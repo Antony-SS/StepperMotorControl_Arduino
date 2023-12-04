@@ -11,8 +11,8 @@ const int polishLimitSwitch = 8;
 
 
 // steps per rev -> 16 microsteps per step (really 8 because of the way I'm stepping), 1.8 degrees per true step -> 800 microsteps/revolution
-const int stepsPerRev = 800; // depends on microstepping mode -> ONLY BECAUSE OF THE WAY I AM COUNTING STEPS (One of my programmed steps is really 2 steps)
-const long InchesPerRev = 0.0787402; // from screw pitch // ALSO CHECKED THIS
+const int stepsPerRev = 800; // depends on microstepping mode ->  (One of my programmed steps is really 2 steps)
+const long InchesPerRev = 0.0787402; // from screw pitch
 const long halfPlatformWidth = 3.0625; // from gantry plate
 const long inchesTravel = 32.125; // after considering gantry plate width, limit switch buffer
 const long centerPoint = 163195; // center of actuator in steps
@@ -20,8 +20,7 @@ const long centerPoint = 163195; // center of actuator in steps
 const int pd = 65; // pulse 65 microseconds
 boolean setdir = HIGH; // set direction, LOW = Backwards, HIGH = Forwards
 
-// ALL POSITIONS WILL REFERENCE THE CENTER OF THE MOUNT.  THIS MEANS THAT THE ZERO POSITION IS NOT WHERE THE LIMIT SWITCH IS, 
-// BUT RATHER HALF THE MOUNT LENGTH AWAY FROM THE MOTORSIDE LIMIT SWICH
+
 long currentStepPosition; // even though long can hold decimals, these should only ever store ints, otherwise it will cause problems with functions
 long targetStepPosition;
 
@@ -49,7 +48,7 @@ void setup() {
   // setTargetStepPosition(10000);
   interruptLastTime = -75; // trick to make sure that if we motor starts close to limit switch that it still triggers
   calibrate();
-  // delay(5000);
+  delay(5000); // wait 5 seconds
   center();
   polish();
 }
